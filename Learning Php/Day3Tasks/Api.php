@@ -1,15 +1,16 @@
 <?php
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST");
+header("Access-Control-Allow-Methods: GET, POST,PUT,DELETE");
 
 $hostname = "localhost";
 $username = "root";
 $password = "";
 $database = "usersdata";
+$charset  = "utf8mb4";
 
 try {
-    $pdo = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+    $pdo = new PDO("mysql:host=$hostname;dbname=$database;charset=$charset", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     http_response_code(500);
@@ -20,7 +21,7 @@ try {
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'GET') {
-    // Fetch all users
+
     try {
         $stmt = $pdo->query("SELECT * FROM users");
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -31,7 +32,7 @@ if ($method === 'GET') {
     }
 
 } elseif ($method === 'POST') {
-    // Insert new user
+
     $input = json_decode(file_get_contents("php://input"), true);
 
     if (!isset($input['name']) || !isset($input['email'])) {
