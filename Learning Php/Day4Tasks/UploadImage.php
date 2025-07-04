@@ -62,3 +62,4 @@ if (count($images) > 0): ?>
 <?php else: ?>
     <p>No images found.</p>
 <?php endif; ?>
+<?php $pdo=null;?>

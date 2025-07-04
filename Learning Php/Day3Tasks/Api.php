@@ -60,4 +60,5 @@ if ($method === 'GET') {
     http_response_code(405);
     echo json_encode(["error" => "Method not allowed"]);
 }
+$pdo=null;
 ?>

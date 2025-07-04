@@ -37,5 +37,7 @@ echo"Connected Successfully to MySql";
 //                                          Deleting Data
 
 $sql = "DELETE FROM users WHERE name = 'Jamil'";
-mysqli_query($connection,$sql)
+mysqli_query($connection,$sql);
+mysqli_close($connection);
+
 ?>

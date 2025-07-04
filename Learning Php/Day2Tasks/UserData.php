@@ -70,5 +70,7 @@
     <?php else: ?>
         <p>No users found.</p>
     <?php endif; ?>
+    <?php $pdo=null; ?>
+    
 </body>
 </html>
