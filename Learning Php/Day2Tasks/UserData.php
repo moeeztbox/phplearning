@@ -16,35 +16,42 @@
     </form>
 
     <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "usersdata";
 
-    $connection = mysqli_connect($servername, $username, $password, $database);
-    if (!$connection) {
-        die("Connection Failed");
+    $host = "localhost";
+    $db = "usersdata";
+    $user = "root";
+    $pass = "";
+    $charset = "utf8mb4";
+    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+    try {
+        $pdo = new PDO($dsn, $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        echo "Connected to the Database Successfully<br>";
+    } catch (PDOException $e) {
+        die("Connection failed: " . $e->getMessage());
     }
-    echo "Connected to the DataBase SuccessFully<br>";
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         $name = $_POST["name"];
         $email = $_POST["email"];
 
-        $data = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
+        $stmt = $pdo->prepare("INSERT INTO users (name, email) VALUES (:name, :email)");
+        $stmt->execute([
+            'name' => $name,
+            'email' => $email
+        ]);
 
-        if (mysqli_query($connection, $data)) {
-            echo "Data Inserted Successfully";
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit;
-        } else {
-            echo "Error: " . mysqli_error($connection);
-        }
+        echo "Data Inserted Successfully";
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
     }
 
-    $result = mysqli_query($connection, "SELECT * FROM users");
+    $stmt = $pdo->query("SELECT * FROM users");
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    ?>
 
-    if (mysqli_num_rows($result) > 0): ?>
+    <?php if (count($users) > 0): ?>
         <h2>All Users</h2>
         <table>
             <tr>
@@ -52,13 +59,13 @@
                 <th>Name</th>
                 <th>Email</th>
             </tr>
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+            <?php foreach ($users as $row): ?>
                 <tr>
-                    <td><?= $row['id'] ?></td>
-                    <td><?= $row['name'] ?></td>
-                    <td><?= $row['email'] ?></td>
+                    <td><?= htmlspecialchars($row['id']) ?></td>
+                    <td><?= htmlspecialchars($row['name']) ?></td>
+                    <td><?= htmlspecialchars($row['email']) ?></td>
                 </tr>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </table>
     <?php else: ?>
         <p>No users found.</p>
