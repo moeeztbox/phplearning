@@ -1,8 +1,8 @@
 <?php
-$apiKey = 'awDQxRsvCE4tNhxxrg13wr5D'; 
+$apiKey = 'awDQxRsvCE4tNhxxrg13wr5D';
 
 $outputDir = "uploads/removedbackground/";
-$logFile = "logs/app.log"; 
+$logFile = "logs/app.log";
 
 if (!file_exists($outputDir)) mkdir($outputDir, 0777, true);
 if (!file_exists(dirname($logFile))) mkdir(dirname($logFile), 0777, true);
@@ -38,6 +38,7 @@ if (isset($_POST['remove_bg']) && isset($_POST['original_path'])) {
         logActivity("Background removal FAILED for $fileName - CURL Error: $errorMsg");
         exit;
     }
+
     curl_close($ch);
 
     if (file_put_contents($outputFile, $response)) {
@@ -51,7 +52,6 @@ if (isset($_POST['remove_bg']) && isset($_POST['original_path'])) {
     exit;
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>

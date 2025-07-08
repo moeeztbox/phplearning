@@ -8,10 +8,9 @@
 <body>
     <h1>Upload Image</h1>
     <form method="post" action="UploadImage.php" enctype="multipart/form-data">
-        <label>Select Image</label>
-        <input type="file" name="image" required>
+        <label for="image">Select Image:</label>
+        <input type="file" name="image" id="image" required>
         <button type="submit" name="submit">Upload</button>
     </form>
-    
 </body>
 </html>

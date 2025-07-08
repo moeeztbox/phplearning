@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST,PUT,DELETE");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 
 $hostname = "localhost";
 $username = "root";
@@ -21,7 +21,6 @@ try {
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'GET') {
-
     try {
         $stmt = $pdo->query("SELECT * FROM users");
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -32,7 +31,6 @@ if ($method === 'GET') {
     }
 
 } elseif ($method === 'POST') {
-
     $input = json_decode(file_get_contents("php://input"), true);
 
     if (!isset($input['name']) || !isset($input['email'])) {
@@ -47,7 +45,7 @@ if ($method === 'GET') {
     try {
         $stmt = $pdo->prepare("INSERT INTO users (name, email) VALUES (:name, :email)");
         $stmt->execute([
-            ':name' => $name,
+            ':name'  => $name,
             ':email' => $email
         ]);
 
@@ -61,5 +59,6 @@ if ($method === 'GET') {
     http_response_code(405);
     echo json_encode(["error" => "Method not allowed"]);
 }
-$pdo=null;
+
+$pdo = null;
 ?>

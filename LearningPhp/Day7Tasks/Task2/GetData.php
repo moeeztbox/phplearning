@@ -10,9 +10,8 @@ if ($limit < 1) $limit = 5;
 $offset = ($page - 1) * $limit;
 
 try {
-
     $hostname = 'localhost';
-    $database   = 'usersdata';
+    $database = 'usersdata';
     $username = 'root';
     $password = '';
     $charset = 'utf8mb4';
@@ -36,7 +35,7 @@ try {
         "limit" => $limit,
         "results" => $users
     ]);
-
+    
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(["error" => "Database error: " . $e->getMessage()]);

@@ -1,1 +1,3 @@
-<?php echo "Hello, Intern"?>
+<?php
+echo "Hello, Intern";
+?>

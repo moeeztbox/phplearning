@@ -28,15 +28,19 @@ if (isset($_POST['uploadpython']) && isset($_POST['original_path'])) {
     echo "<p style='color:red;'>No image received.</p>";
 }
 ?>
+
 <!DOCTYPE html>
 <html>
-<head><title>Background Removed Using Python</title></head>
+<head>
+    <title>Background Removed Using Python</title>
+</head>
 <body>
     <h3>Original Image:</h3>
     <img src="<?= htmlspecialchars($originalImage) ?>" width="300"><br><br>
 
     <h3>Background Removed Image:</h3>
     <img src="<?= htmlspecialchars($outputFile) ?>" width="300"><br><br>
-<a href="Form.php">← Try Another Image</a>
+
+    <a href="Form.php">← Try Another Image</a>
 </body>
 </html>

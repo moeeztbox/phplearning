@@ -1,5 +1,4 @@
 <?php
-
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 5;
 
@@ -28,6 +27,7 @@ $data = json_decode($response, true);
     <?php else: ?>
         <p>No users found.</p>
     <?php endif; ?>
+
     <div>
         <a href="?page=<?= $page - 1 ?>&limit=<?= $limit ?>" <?= ($page <= 1 ? 'style="display:none;"' : '') ?>>Previous</a>
         <a href="?page=<?= $page + 1 ?>&limit=<?= $limit ?>">Next</a>

@@ -1,26 +1,26 @@
 <?php
-$servername="localhost";
-$username="root";
-$password="";
-$database="companyDB";
-$connection=mysqli_connect($servername,$username,$password,$database);
-if(!$connection){
+$servername = "localhost";
+$username   = "root";
+$password   = "";
+$database   = "companyDB";
+
+$connection = mysqli_connect($servername, $username, $password, $database);
+
+if (!$connection) {
     die("Connection Failed");
 }
-echo"Connected Successfully to MySql";
 
+echo "Connected Successfully to MySQL<br>";
 
-//                                          Inserting Data
-
-// $name = "Jamil";
+// ========================= INSERTING DATA =========================
+// $name  = "Jamil";
 // $email = "jamil123@gmail.com";
-// $age = 20;
+// $age   = 20;
 
 // $sql = "INSERT INTO users (name, email, age) VALUES ('$name', '$email', $age)";
 // mysqli_query($connection, $sql);
 
-//                                          Selecting Data
-
+// ========================= SELECTING DATA =========================
 // $result = mysqli_query($connection, "SELECT * FROM users");
 
 // while ($row = mysqli_fetch_assoc($result)) {
@@ -29,15 +29,14 @@ echo"Connected Successfully to MySql";
 //     echo "Age: " . $row['age'] . "<hr>";
 // }
 
-//                                          Updating Data
-
+// ========================= UPDATING DATA =========================
 // $sql = "UPDATE users SET age = 22 WHERE name = 'Jamil'";
-// mysqli_query($connection,$sql)
+// mysqli_query($connection, $sql);
 
-//                                          Deleting Data
-
+// ========================= DELETING DATA =========================
 $sql = "DELETE FROM users WHERE name = 'Jamil'";
-mysqli_query($connection,$sql);
-mysqli_close($connection);
+mysqli_query($connection, $sql);
 
+// ========================= CLOSING CONNECTION =========================
+mysqli_close($connection);
 ?>

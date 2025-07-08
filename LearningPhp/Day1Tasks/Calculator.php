@@ -8,9 +8,7 @@
 <body>
 
 <form method="post">
-    <label>
-        First Number:
-    </label>
+    <label>First Number:</label>
     <input type="number" name="num1" required>
 
     <label>Second Number:</label>
@@ -22,28 +20,27 @@
         <option value="add">Addition</option>
         <option value="subtract">Subtraction</option>
     </select>
+
     <button type="submit" name="calculate">Calculate</button>
 </form>
 
 <?php
-if(isset($_POST['calculate'])){
-    $num1=$_POST['num1'];
-    $num2=$_POST['num2'];
-    $operation=$_POST['operation'];
-    if($operation=="selectoption"){
+if (isset($_POST['calculate'])) {
+    $num1 = $_POST['num1'];
+    $num2 = $_POST['num2'];
+    $operation = $_POST['operation'];
+
+    if ($operation == "selectoption") {
         echo "<div>Please Select an Option</div>";
-    }
-    elseif($operation=="add"){
-        $result=$num1+$num2;
+    } elseif ($operation == "add") {
+        $result = $num1 + $num2;
         echo "<div>$num1 + $num2 = $result</div>";
-    }
-    elseif($operation=="subtract"){
-        $result=$num1-$num2;
+    } elseif ($operation == "subtract") {
+        $result = $num1 - $num2;
         echo "<div>$num1 - $num2 = $result</div>";
     }
-    
 }
 ?>
-    
+
 </body>
 </html>

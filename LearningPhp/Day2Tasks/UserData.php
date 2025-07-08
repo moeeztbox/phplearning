@@ -7,22 +7,24 @@
 </head>
 <body>
     <h1>Please Insert Your Data</h1>
+
     <form method="post">
         <label>Name</label>
         <input type="text" name="name" required>
+        
         <label>Email</label>
         <input type="email" name="email" required>
+        
         <button type="submit" name="submit">Insert</button>
     </form>
 
     <?php
-
-    $host = "localhost";
-    $db = "usersdata";
-    $user = "root";
-    $pass = "";
+    $host    = "localhost";
+    $db      = "usersdata";
+    $user    = "root";
+    $pass    = "";
     $charset = "utf8mb4";
-    $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+    $dsn     = "mysql:host=$host;dbname=$db;charset=$charset";
 
     try {
         $pdo = new PDO($dsn, $user, $pass);
@@ -33,12 +35,12 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
-        $name = $_POST["name"];
+        $name  = $_POST["name"];
         $email = $_POST["email"];
 
         $stmt = $pdo->prepare("INSERT INTO users (name, email) VALUES (:name, :email)");
         $stmt->execute([
-            'name' => $name,
+            'name'  => $name,
             'email' => $email
         ]);
 
@@ -47,7 +49,7 @@
         exit;
     }
 
-    $stmt = $pdo->query("SELECT * FROM users");
+    $stmt  = $pdo->query("SELECT * FROM users");
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
@@ -70,7 +72,7 @@
     <?php else: ?>
         <p>No users found.</p>
     <?php endif; ?>
-    <?php $pdo=null; ?>
-    
+
+    <?php $pdo = null; ?>
 </body>
 </html>

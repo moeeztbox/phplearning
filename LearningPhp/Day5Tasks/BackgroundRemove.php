@@ -1,5 +1,5 @@
 <?php
-$apiKey = 'awDQxRsvCE4tNhxxrg13wr5D'; 
+$apiKey = 'awDQxRsvCE4tNhxxrg13wr5D';
 
 $outputDir = "uploads/removedbackground/";
 if (!file_exists($outputDir)) mkdir($outputDir, 0777, true);
@@ -27,8 +27,8 @@ if (isset($_POST['remove_bg']) && isset($_POST['original_path'])) {
         echo 'Error: ' . curl_error($ch);
         exit;
     }
-    curl_close($ch);
 
+    curl_close($ch);
     file_put_contents($outputFile, $response);
 } else {
     echo "No image provided.";
@@ -43,10 +43,10 @@ if (isset($_POST['remove_bg']) && isset($_POST['original_path'])) {
 </head>
 <body>
     <h3>Original Image:</h3>
-    <img src="<?= $originalImage ?>" width="300"><br><br>
+    <img src="<?= htmlspecialchars($originalImage) ?>" width="300"><br><br>
 
     <h3>Background Removed Image:</h3>
-    <img src="<?= $outputFile ?>" width="300"><br><br>
+    <img src="<?= htmlspecialchars($outputFile) ?>" width="300"><br><br>
 
     <a href="Form.php">Try Another Image</a>
 </body>

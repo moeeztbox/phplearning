@@ -1,32 +1,31 @@
 <?php
 
-echo "<h3>User Define Functions</h3>";
+echo "<h3>User Defined Functions</h3>";
 
 function add() {
     echo "Function without Parameters<br>";
-    $num1=5;
-    $num2=5;
-    echo "$num1 + $num2 = ".($num1+$num2).".";
+    $num1 = 5;
+    $num2 = 5;
+    echo "$num1 + $num2 = " . ($num1 + $num2) . ".";
 }
 add();
 
-function sub($num1,$num2){
+function sub($num1, $num2) {
     echo "<br>Function with Parameters<br>";
-    echo "$num1 - $num2 = ".($num1-$num2).".";
+    echo "$num1 - $num2 = " . ($num1 - $num2) . ".";
 }
+sub(5, 5);
 
-sub(5,5);
-
-function mul($num1,$num2){
+function mul($num1, $num2) {
     echo "<br>Function with Return Value<br>";
-    return $num1*$num2;
+    return $num1 * $num2;
 }
-$num1=5;
-$num2=5;
-$result=mul($num1,$num2);
+$num1 = 5;
+$num2 = 5;
+$result = mul($num1, $num2);
 echo "$num1 * $num2 = $result";
 
-echo "<h3>Pre Define Functions</h3>";
+echo "<h3>Predefined Functions</h3>";
 
 $name = "Moeez";
 
@@ -37,13 +36,10 @@ echo "Lowercase: " . strtolower($name) . "<br>";
 echo "Uppercase: " . strtoupper($name) . "<br>";
 echo "Reverse: " . strrev($name) . "<br>";
 echo "Replace: " . str_replace("Moeez", "Ali", $name) . "<br>";
-echo "Position of 'e': " . strpos($name, "e") ;
-
+echo "Position of 'e': " . strpos($name, "e") . "<br>";
 
 $num1 = 7.6;
 $num2 = -15;
-
-
 
 echo "<h3>Number Functions</h3>";
 echo "Numbers are $num1 and $num2<br>";
@@ -53,8 +49,7 @@ echo "Round: " . round($num1) . "<br>";
 echo "Absolute: " . abs($num2) . "<br>";
 echo "Square Root of 16: " . sqrt(16) . "<br>";
 echo "Power of 2^3: " . pow(2, 3) . "<br>";
-echo "Random number (1-100): " . rand(1, 60);
-
+echo "Random number (1-60): " . rand(1, 60) . "<br>";
 
 echo "<h3>Date & Time Functions</h3>";
 echo "Current Year: " . date("Y") . "<br>";
@@ -64,7 +59,7 @@ echo "Current Time: " . date("h:i:s A") . "<br>";
 $skills = ["HTML", "CSS", "PHP", "JavaScript"];
 
 echo "<h3>📦 Array Functions</h3>";
-echo "Array Entities are<br>";
+echo "Array Entities are:<br>";
 print_r($skills);
 echo "<br>Total skills: " . count($skills) . "<br>";
 echo "Is 'PHP' in array? " . (in_array("PHP", $skills) ? "Yes" : "No") . "<br>";
@@ -81,10 +76,11 @@ echo "<h3>🛠️ Miscellaneous</h3>";
 $emptyVariable = "";
 $nullVariable = null;
 
-echo "Is \$emptyVariable is empty? " . (empty($emptyVariable) ? "Yes" : "No") . "<br>";
-echo "Is \$nullVariable is null? " . (is_null($nullVariable) ? "Yes" : "No") . "<br>";
+echo "Is \$emptyVariable empty? " . (empty($emptyVariable) ? "Yes" : "No") . "<br>";
+echo "Is \$nullVariable null? " . (is_null($nullVariable) ? "Yes" : "No") . "<br>";
 echo "Type of \$name: " . gettype($name) . "<br>";
 echo "Type of \$num1: " . gettype($num1) . "<br>";
 echo "Type of \$num2: " . gettype($num2) . "<br>";
 echo "Type of \$skills: " . gettype($skills) . "<br>";
+
 ?>

@@ -134,17 +134,12 @@ switch ($method) {
             $stmt = $pdo->prepare($sql);
             $stmt->execute($params);
 
-            if ($stmt->rowCount() > 0) {
-                echo json_encode([
-                    "status" => 200,
-                    "message" => "User updated successfully"
-                ]);
-            } else {
-                echo json_encode([
-                    "status" => 200,
-                    "message" => "No changes made (same values)"
-                ]);
-            }
+            echo json_encode([
+                "status" => 200,
+                "message" => $stmt->rowCount() > 0
+                    ? "User updated successfully"
+                    : "No changes made (same values)"
+            ]);
         } catch (PDOException $e) {
             http_response_code(500);
             echo json_encode([

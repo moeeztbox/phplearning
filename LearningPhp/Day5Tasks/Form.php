@@ -7,6 +7,7 @@ $originalImage = '';
 if (isset($_POST['upload'])) {
     $fileName = basename($_FILES["image"]["name"]);
     $targetFile = $uploadDir . $fileName;
+
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
         $originalImage = $targetFile;
     } else {

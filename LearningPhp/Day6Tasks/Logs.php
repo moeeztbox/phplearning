@@ -1,11 +1,11 @@
 <?php
 $logFile = "logs/app.log";
-
 $logs = [];
 
 if (file_exists($logFile)) {
     $lines = file($logFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    $pattern='/^"(.*?)"\s+\((.*?)\)$/';
+    $pattern = '/^"(.*?)"\s+\((.*?)\)$/';
+
     foreach ($lines as $line) {
         if (preg_match($pattern, $line, $matches)) {
             $message = $matches[1];
@@ -13,16 +13,19 @@ if (file_exists($logFile)) {
 
             if (stripos($message, 'FAILED') !== false) {
                 $type = 'Error';
-            } elseif (stripos($message, 'successfully') !== false || stripos($message, 'removed') !== false) {
+            } elseif (
+                stripos($message, 'successfully') !== false ||
+                stripos($message, 'removed') !== false
+            ) {
                 $type = 'Success';
             } else {
                 $type = 'Info';
             }
 
             $logs[] = [
-                'message' => $message,
+                'message'   => $message,
                 'timestamp' => $timestamp,
-                'type' => $type
+                'type'      => $type
             ];
         }
     }

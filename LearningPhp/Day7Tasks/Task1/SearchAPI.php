@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: GET");
 
 if (!isset($_GET['query']) || empty(trim($_GET['query']))) {
     echo json_encode(["error" => "Missing or empty 'query' parameter"]);
-    http_response_code(400); 
+    http_response_code(400);
     exit;
 }
 
@@ -36,10 +36,10 @@ try {
     echo json_encode([
         "query" => $searchTerm,
         "results" => $results
-    ]); 
+    ]);
 
 } catch (PDOException $e) {
-    http_response_code(500); 
+    http_response_code(500);
     echo json_encode(["error" => "Database error: " . $e->getMessage()]);
     exit;
 }
