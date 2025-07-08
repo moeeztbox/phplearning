@@ -23,7 +23,6 @@ $allowedMimeTypes = ['image/jpeg','image/jpg', 'image/png', 'image/gif', 'image/
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['image'])) {
         $file     = $_FILES['image'];
-        $filename = basename($file['name']);
         $tmpPath  = $file['tmp_name'];
 
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
@@ -34,8 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "<p style='color: red;'>File type not allowed: $mimeType</p>";
             exit;
         }
+//Assigning Unique Id and Time both.
+        $originalName=pathinfo($file['name'],PATHINFO_FILENAME);
+        $extension=pathinfo($file['name'],PATHINFO_EXTENSION);
+        $newfileName=date('Y-m-d_H-i-s').'_'.uniqid(). '.' . $extension;
 
-        $uploadPath = 'uploads/' . $filename;
+        $uploadPath = 'uploads/' . $newfileName;
         if (move_uploaded_file($tmpPath, $uploadPath)) {
             $stmt = $pdo->prepare("INSERT INTO images (file_path) VALUES (:file_path)");
             $stmt->execute(['file_path' => $uploadPath]);

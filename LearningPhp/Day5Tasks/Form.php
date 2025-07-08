@@ -31,9 +31,19 @@ if (isset($_POST['upload'])) {
         <h3>Uploaded Image:</h3>
         <img src="<?= $originalImage ?>" width="300"><br><br>
 
-        <form method="post" action="BackgroundRemove.php">
+        <form method="post" action="BackgroundRemove.php" style="display: inline-block;">
             <input type="hidden" name="original_path" value="<?= $originalImage ?>">
             <button type="submit" name="remove_bg">Remove Background</button>
+        </form>
+
+        <form method="post" action="GrayScale.php" style="display: inline-block;">
+            <input type="hidden" name="original_path" value="<?= $originalImage ?>">
+            <button type="submit" name="grayscale">Convert to Grayscale</button>
+        </form>
+
+        <form method="post" action="PythonBgRemove.php" style="display: inline-block;">
+            <input type="hidden" name="original_path" value="<?= $originalImage ?>">
+            <button type="submit" name="uploadpython">Remove Background Using Python</button>
         </form>
     <?php endif; ?>
 </body>
